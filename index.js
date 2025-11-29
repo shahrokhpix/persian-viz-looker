@@ -3,6 +3,14 @@
  * Main JavaScript file with all visualization types and Persian language support
  */
 
+// Load CSS dynamically
+(function() {
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = 'https://raw.githubusercontent.com/shahrokhpix/persian-viz-looker/main/style.css';
+  document.head.appendChild(link);
+})();
+
 // Global variables
 let gvizData = null;
 let gvizConfig = null;
@@ -705,6 +713,9 @@ function renderTable(data, config) {
     // Render table with pagination
     renderTablePage();
     
+    // Setup pagination listeners
+    setupPaginationListeners();
+    
     // Show/hide pagination
     if (showPagination && rows.length > pageSize && tablePagination) {
       tablePagination.style.display = 'flex';
@@ -829,10 +840,94 @@ function renderHeader(data, config) {
 }
 
 /**
+ * Initialize HTML structure if not exists
+ */
+function initializeHTML() {
+  if (document.getElementById('viz-container')) {
+    return; // Already initialized
+  }
+  
+  // Create main container
+  const container = document.createElement('div');
+  container.id = 'viz-container';
+  container.className = 'viz-container';
+  
+  // Import HTML structure from index.html (simplified version)
+  container.innerHTML = `
+    <div id="loading" class="loading-state">
+      <div class="loading-spinner"></div>
+      <p class="loading-text">در حال بارگذاری...</p>
+    </div>
+    <div id="error" class="error-state" style="display: none;">
+      <div class="error-icon">⚠️</div>
+      <p class="error-text" id="error-message">خطایی رخ داده است</p>
+    </div>
+    <div id="text-display" class="viz-type text-display" style="display: none;">
+      <div class="text-content" id="text-content"></div>
+    </div>
+    <div id="bar-chart" class="viz-type chart-container" style="display: none;">
+      <div class="chart-header"><h3 id="bar-chart-title" class="chart-title"></h3></div>
+      <div class="chart-wrapper"><canvas id="bar-canvas"></canvas></div>
+      <div id="bar-legend" class="chart-legend"></div>
+    </div>
+    <div id="line-chart" class="viz-type chart-container" style="display: none;">
+      <div class="chart-header"><h3 id="line-chart-title" class="chart-title"></h3></div>
+      <div class="chart-wrapper"><canvas id="line-canvas"></canvas></div>
+      <div id="line-legend" class="chart-legend"></div>
+    </div>
+    <div id="pie-chart" class="viz-type chart-container" style="display: none;">
+      <div class="chart-header"><h3 id="pie-chart-title" class="chart-title"></h3></div>
+      <div class="chart-wrapper pie-wrapper"><canvas id="pie-canvas"></canvas></div>
+      <div id="pie-legend" class="chart-legend pie-legend"></div>
+    </div>
+    <div id="kpi-card" class="viz-type kpi-container" style="display: none;">
+      <div class="kpi-card">
+        <div class="kpi-label" id="kpi-label"></div>
+        <div class="kpi-value" id="kpi-value"></div>
+        <div class="kpi-comparison" id="kpi-comparison" style="display: none;">
+          <span class="kpi-arrow" id="kpi-arrow"></span>
+          <span class="kpi-change" id="kpi-change"></span>
+        </div>
+        <div class="kpi-secondary" id="kpi-secondary" style="display: none;"></div>
+      </div>
+    </div>
+    <div id="table-display" class="viz-type table-container" style="display: none;">
+      <div class="table-header"><h3 id="table-title" class="table-title"></h3></div>
+      <div class="table-wrapper">
+        <table id="data-table" class="data-table">
+          <thead id="table-head"></thead>
+          <tbody id="table-body"></tbody>
+        </table>
+      </div>
+      <div id="table-pagination" class="table-pagination" style="display: none;">
+        <button id="prev-page" class="pagination-btn" disabled>قبلی</button>
+        <span id="page-info" class="page-info">صفحه 1 از 1</span>
+        <button id="next-page" class="pagination-btn">بعدی</button>
+      </div>
+    </div>
+    <div id="header-display" class="viz-type header-container" style="display: none;">
+      <div class="header-content">
+        <h1 id="header-title" class="header-title"></h1>
+        <h2 id="header-subtitle" class="header-subtitle" style="display: none;"></h2>
+      </div>
+    </div>
+  `;
+  
+  // Append to body or existing container
+  const target = document.body || document.querySelector('body');
+  if (target) {
+    target.appendChild(container);
+  }
+}
+
+/**
  * Main draw function - called by Looker Studio
  */
 function drawViz(data) {
   try {
+    // Initialize HTML structure
+    initializeHTML();
+    
     showLoading();
     
     // Store data globally
@@ -886,12 +981,13 @@ function drawViz(data) {
   }
 }
 
-// Pagination event listeners
-document.addEventListener('DOMContentLoaded', () => {
+// Pagination event listeners - setup after initialization
+function setupPaginationListeners() {
   const prevBtn = document.getElementById('prev-page');
   const nextBtn = document.getElementById('next-page');
   
-  if (prevBtn) {
+  if (prevBtn && !prevBtn.hasAttribute('data-listener-attached')) {
+    prevBtn.setAttribute('data-listener-attached', 'true');
     prevBtn.addEventListener('click', () => {
       if (currentPage > 1) {
         currentPage--;
@@ -900,7 +996,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   
-  if (nextBtn) {
+  if (nextBtn && !nextBtn.hasAttribute('data-listener-attached')) {
+    nextBtn.setAttribute('data-listener-attached', 'true');
     nextBtn.addEventListener('click', () => {
       const totalPages = Math.ceil(tableData.length / pageSize);
       if (currentPage < totalPages) {
@@ -909,7 +1006,14 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-});
+}
+
+// Setup listeners when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', setupPaginationListeners);
+} else {
+  setupPaginationListeners();
+}
 
 // Looker Studio Community Visualization API Integration
 if (typeof gviz !== 'undefined') {

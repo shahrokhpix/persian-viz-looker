@@ -18,8 +18,7 @@
       "icon": "https://raw.githubusercontent.com/shahrokhpix/persian-viz-looker/main/icon.png",
       "description": "Persian language visualization with multiple chart types and RTL support",
       "resource": {
-        "js": "https://raw.githubusercontent.com/shahrokhpix/persian-viz-looker/main/index.js",
-        "config": "https://raw.githubusercontent.com/shahrokhpix/persian-viz-looker/main/manifest.json"
+        "js": "https://raw.githubusercontent.com/shahrokhpix/persian-viz-looker/main/index.js"
       },
       "config": {
         "style": [
