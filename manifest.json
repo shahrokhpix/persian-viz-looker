@@ -4,18 +4,11 @@
   "description": "A comprehensive Community Visualization for Looker Studio with full Persian (Farsi) language support, RTL layout, and multiple visualization types including charts, tables, KPI cards, and text displays.",
   "author": "Shahrokh Pix",
   "organization": "Community",
-  "organizationUrl": "https://github.com/shahrokhpix",
-  "supportUrl": "https://github.com/shahrokhpix/persian-viz-looker/issues",
-  "privacyPolicyUrl": "https://github.com/shahrokhpix/persian-viz-looker/blob/main/PRIVACY.md",
-  "termsOfServiceUrl": "https://github.com/shahrokhpix/persian-viz-looker/blob/main/TERMS.md",
-  "packageUrl": "https://github.com/shahrokhpix/persian-viz-looker",
-  "logoUrl": "https://raw.githubusercontent.com/shahrokhpix/persian-viz-looker/main/logo.png",
   "devMode": false,
   "components": [
     {
       "id": "persianViz",
       "name": "Persian Visualization",
-      "icon": "https://raw.githubusercontent.com/shahrokhpix/persian-viz-looker/main/icon.png",
       "description": "Persian language visualization with multiple chart types and RTL support",
       "resource": {
         "js": "https://raw.githubusercontent.com/shahrokhpix/persian-viz-looker/main/index.js"
