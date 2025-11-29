@@ -1,0 +1,597 @@
+/**
+ * Persian Looker Studio Community Visualization Styles
+ * Complete RTL support with Vazirmatn font family
+ */
+
+/* Import Vazirmatn font (already imported in HTML, but ensuring it's available) */
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+/* Global RTL Support */
+* {
+  box-sizing: border-box;
+  direction: rtl;
+  text-align: right;
+  font-family: 'Vazirmatn', 'Tahoma', 'Arial', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Vazirmatn', sans-serif;
+  direction: rtl;
+  text-align: right;
+  background-color: transparent;
+  overflow: hidden;
+}
+
+/* Main Container */
+.viz-container {
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  position: relative;
+  font-family: 'Vazirmatn', sans-serif;
+  direction: rtl;
+  text-align: right;
+  overflow: auto;
+}
+
+/* Loading State */
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  gap: 20px;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #4285F4;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+  font-family: 'Vazirmatn', sans-serif;
+  font-size: 16px;
+  color: #666;
+  margin: 0;
+}
+
+/* Error State */
+.error-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  gap: 15px;
+  padding: 20px;
+}
+
+.error-icon {
+  font-size: 48px;
+}
+
+.error-text {
+  font-family: 'Vazirmatn', sans-serif;
+  font-size: 16px;
+  color: #EA4335;
+  text-align: center;
+  margin: 0;
+}
+
+/* Text Display */
+.text-display {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.text-content {
+  font-family: 'Vazirmatn', sans-serif;
+  width: 100%;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  direction: rtl;
+  text-align: right;
+}
+
+/* Chart Containers */
+.chart-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  gap: 15px;
+}
+
+.chart-header {
+  width: 100%;
+  text-align: center;
+}
+
+.chart-title {
+  font-family: 'Vazirmatn', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  color: inherit;
+  direction: rtl;
+  text-align: center;
+}
+
+.chart-wrapper {
+  flex: 1;
+  width: 100%;
+  min-height: 300px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chart-wrapper canvas {
+  max-width: 100%;
+  max-height: 100%;
+  direction: ltr; /* Canvas coordinates are LTR */
+}
+
+.pie-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Chart Legend */
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  direction: rtl;
+}
+
+.pie-legend {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Vazirmatn', sans-serif;
+  font-size: 14px;
+  direction: rtl;
+}
+
+.legend-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.legend-label {
+  font-family: 'Vazirmatn', sans-serif;
+  direction: rtl;
+  text-align: right;
+}
+
+/* KPI Card */
+.kpi-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.kpi-card {
+  width: 100%;
+  max-width: 500px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  direction: rtl;
+  color: #FFFFFF;
+}
+
+.kpi-label {
+  font-family: 'Vazirmatn', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  opacity: 0.9;
+  margin-bottom: 10px;
+  direction: rtl;
+  text-align: center;
+}
+
+.kpi-value {
+  font-family: 'Vazirmatn', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  margin: 15px 0;
+  direction: ltr; /* Numbers are displayed LTR */
+  text-align: center;
+}
+
+.kpi-comparison {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 15px;
+  font-family: 'Vazirmatn', sans-serif;
+  font-size: 14px;
+  direction: rtl;
+}
+
+.kpi-arrow {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.kpi-change {
+  font-weight: 600;
+}
+
+.kpi-secondary {
+  font-family: 'Vazirmatn', sans-serif;
+  font-size: 14px;
+  margin-top: 15px;
+  opacity: 0.8;
+  direction: rtl;
+  text-align: center;
+}
+
+/* Table Container */
+.table-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  gap: 15px;
+  overflow: auto;
+}
+
+.table-header {
+  width: 100%;
+}
+
+.table-title {
+  font-family: 'Vazirmatn', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  color: inherit;
+  direction: rtl;
+  text-align: right;
+}
+
+.table-wrapper {
+  flex: 1;
+  overflow: auto;
+  width: 100%;
+  border: 1px solid #E0E0E0;
+  border-radius: 4px;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Vazirmatn', sans-serif;
+  direction: rtl;
+  background-color: #FFFFFF;
+}
+
+.data-table thead {
+  background-color: #F5F5F5;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.data-table th {
+  padding: 12px 15px;
+  text-align: right;
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+  border-bottom: 2px solid #E0E0E0;
+  cursor: pointer;
+  user-select: none;
+  direction: rtl;
+  font-family: 'Vazirmatn', sans-serif;
+}
+
+.data-table th:hover {
+  background-color: #EEEEEE;
+}
+
+.data-table td {
+  padding: 10px 15px;
+  text-align: right;
+  font-size: 14px;
+  border-bottom: 1px solid #F0F0F0;
+  direction: rtl;
+  font-family: 'Vazirmatn', sans-serif;
+}
+
+.data-table tbody tr:hover {
+  background-color: #F9F9F9;
+}
+
+.data-table tbody tr:nth-child(even) {
+  background-color: #FAFAFA;
+}
+
+.data-table tbody tr:nth-child(even):hover {
+  background-color: #F5F5F5;
+}
+
+/* Table Pagination */
+.table-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 10px;
+  direction: rtl;
+  font-family: 'Vazirmatn', sans-serif;
+}
+
+.pagination-btn {
+  font-family: 'Vazirmatn', sans-serif;
+  padding: 8px 16px;
+  border: 1px solid #CCCCCC;
+  background-color: #FFFFFF;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+  direction: rtl;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background-color: #F5F5F5;
+  border-color: #999999;
+}
+
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.page-info {
+  font-family: 'Vazirmatn', sans-serif;
+  font-size: 14px;
+  color: #666;
+  direction: rtl;
+}
+
+/* Header/Title Container */
+.header-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 8px;
+}
+
+.header-content {
+  width: 100%;
+  text-align: center;
+  direction: rtl;
+}
+
+.header-title {
+  font-family: 'Vazirmatn', sans-serif;
+  font-weight: 700;
+  margin: 0;
+  color: inherit;
+  direction: rtl;
+  text-align: center;
+  word-wrap: break-word;
+}
+
+.header-title.h1 {
+  font-size: 48px;
+}
+
+.header-title.h2 {
+  font-size: 36px;
+}
+
+.header-title.h3 {
+  font-size: 28px;
+}
+
+.header-title.h4 {
+  font-size: 24px;
+}
+
+.header-subtitle {
+  font-family: 'Vazirmatn', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  margin-top: 15px;
+  color: inherit;
+  opacity: 0.8;
+  direction: rtl;
+  text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header-title.h1 {
+    font-size: 36px;
+  }
+  
+  .header-title.h2 {
+    font-size: 28px;
+  }
+  
+  .header-title.h3 {
+    font-size: 24px;
+  }
+  
+  .header-title.h4 {
+    font-size: 20px;
+  }
+  
+  .kpi-value {
+    font-size: 36px;
+  }
+  
+  .chart-wrapper {
+    min-height: 250px;
+  }
+  
+  .data-table th,
+  .data-table td {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-title.h1 {
+    font-size: 28px;
+  }
+  
+  .kpi-value {
+    font-size: 28px;
+  }
+  
+  .chart-legend {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .table-pagination {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .viz-container {
+    overflow: visible;
+  }
+  
+  .table-pagination {
+    display: none;
+  }
+  
+  .chart-wrapper {
+    page-break-inside: avoid;
+  }
+  
+  .kpi-card {
+    page-break-inside: avoid;
+  }
+}
+
+/* Accessibility */
+*:focus {
+  outline: 2px solid #4285F4;
+  outline-offset: 2px;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .kpi-card {
+    border: 2px solid #000000;
+  }
+  
+  .data-table th {
+    border-bottom: 3px solid #000000;
+  }
+  
+  .data-table td {
+    border-bottom: 2px solid #000000;
+  }
+}
+
+/* Smooth Transitions */
+.viz-type {
+  transition: opacity 0.3s ease-in-out;
+}
+
+.chart-wrapper canvas {
+  transition: transform 0.2s ease;
+}
+
+.kpi-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Scrollbar Styling (Webkit browsers) */
+.table-wrapper::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+  background: #F5F5F5;
+  border-radius: 4px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+  background: #CCCCCC;
+  border-radius: 4px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #999999;
+}
+
+/* Ensure RTL for all text elements */
+p, span, div, h1, h2, h3, h4, h5, h6, label, button, input, textarea, select {
+  font-family: 'Vazirmatn', sans-serif;
+  direction: rtl;
+}
+
+/* Number display (LTR for numbers) */
+.kpi-value,
+.data-table td[data-type="number"] {
+  direction: ltr;
+  text-align: left;
+  font-variant-numeric: tabular-nums;
+}
+
