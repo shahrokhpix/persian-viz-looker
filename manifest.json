@@ -26,17 +26,17 @@
   "resources": [
     {
       "type": "JS",
-      "path": "index.js",
+      "path": "https://raw.githubusercontent.com/shahrokhpix/persian-viz-looker/main/index.js",
       "name": "index.js"
     },
     {
       "type": "HTML",
-      "path": "index.html",
+      "path": "https://raw.githubusercontent.com/shahrokhpix/persian-viz-looker/main/index.html",
       "name": "index.html"
     },
     {
       "type": "CSS",
-      "path": "style.css",
+      "path": "https://raw.githubusercontent.com/shahrokhpix/persian-viz-looker/main/style.css",
       "name": "style.css"
     }
   ],
